@@ -1,7 +1,7 @@
 <h1 align="center"> Starlight </h1>
 <p align="center">A Simple VitePress Theme</p>
 <p align="center">
-  <img src="" alt="curve-logo" />
+  <img src="" alt="starlight-logo" />
 </p>
 
 ---
