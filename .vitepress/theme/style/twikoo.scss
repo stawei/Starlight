@@ -1,0 +1,589 @@
+// Twikoo 评论系统样式
+// 统一使用主题 --main-* 变量体系，自动适配明暗模式
+
+// ========== 表情面板放大预览 ==========
+@keyframes owoIn {
+  0% {
+    transform: translate(0, -95%);
+    opacity: 0;
+  }
+  100% {
+    transform: translate(0, -112%);
+    opacity: 1;
+  }
+}
+
+#owo-big {
+  position: fixed;
+  align-items: center;
+  background-color: var(--main-card-background);
+  border: 1px solid var(--main-card-border);
+  border-radius: 10px;
+  z-index: 9999;
+  display: none;
+  transform: translate(0, -112%);
+  overflow: hidden;
+  animation: owoIn 0.3s cubic-bezier(0.42, 0, 0.3, 1.11);
+  box-shadow: 0 8px 16px -4px var(--main-border-shadow);
+
+  img {
+    width: 100%;
+  }
+}
+
+// ========== Twikoo 主容器 ==========
+.twikoo {
+  svg {
+    color: var(--main-font-color);
+  }
+
+  // 输入框区域
+  .tk-input {
+    .el-textarea__inner {
+      min-height: 130px !important;
+      border-radius: 15px;
+      display: block;
+      resize: vertical;
+      padding: 16px 16px 40px 16px;
+      line-height: 1.5;
+      box-sizing: border-box;
+      width: 100%;
+      font-size: inherit;
+      color: var(--main-font-color);
+      background-color: var(--main-card-second-background);
+      border: 1px solid var(--main-card-border);
+      transition: border-color 0.2s cubic-bezier(0.645, 0.045, 0.355, 1);
+
+      &:focus {
+        border-color: var(--main-color);
+      }
+    }
+  }
+
+  // 隐藏 Markdown 预览按钮
+  .el-button.tk-preview {
+    display: none;
+  }
+
+  // 提交按钮
+  .el-button--primary {
+    border-color: var(--main-color);
+    color: var(--main-color-white, #fff);
+    background-color: var(--main-color);
+    border-radius: 12px;
+    box-shadow: 0 0 12px 4px var(--main-color-bg);
+    transition: all 0.3s;
+    width: 6.25rem;
+    position: absolute;
+    top: -43px;
+    right: 0;
+    margin-left: 0.5rem !important;
+    height: 32px;
+
+    &:hover {
+      opacity: 0.85;
+    }
+
+    &.is-disabled,
+    &.is-disabled:active,
+    &.is-disabled:focus,
+    &.is-disabled:hover {
+      opacity: 0.2;
+    }
+  }
+
+  // 取消按钮
+  .el-button.tk-cancel {
+    background: var(--main-card-second-background);
+    border-radius: 8px;
+    color: var(--main-font-color);
+
+    &:hover {
+      background: var(--main-color);
+      color: #fff;
+    }
+  }
+
+  // 隐藏不需要的元素
+  .tk-submit-action-icon.__markdown,
+  .tk-row.actions > a {
+    display: none;
+  }
+
+  // 输入框前置标签
+  .el-input__inner {
+    background: var(--main-card-second-background) !important;
+    border: none !important;
+    color: var(--main-font-color) !important;
+    padding-left: 8px;
+
+    &:focus {
+      border: none;
+    }
+  }
+
+  .el-input-group__append,
+  .el-input-group__prepend {
+    background-color: var(--main-card-background);
+    color: var(--main-font-color);
+    border: none;
+    font-weight: 700;
+  }
+
+  .el-input-group--prepend .el-input__inner,
+  .el-input-group__append {
+    border-radius: 0 10px 10px 0;
+    border-left-width: 0 !important;
+  }
+
+  .el-input--small .el-input__inner {
+    padding: 8px 8px 8px 16px;
+  }
+
+  // 昵称/邮箱/网址输入行
+  .tk-meta-input {
+    position: relative;
+    margin-top: 8px;
+    width: calc(100% - 6.875rem);
+
+    .el-input.el-input--small.el-input-group.el-input-group--prepend {
+      border-radius: 12px;
+      background: var(--main-card-second-background);
+      border: 1px solid var(--main-card-border);
+
+      &:focus-within {
+        border-color: var(--main-color);
+        border-width: 2px;
+      }
+    }
+
+    .el-input .el-input-group__prepend {
+      user-select: none;
+      border-radius: 12px 0 0 12px;
+    }
+  }
+
+  // 隐藏头像
+  .tk-row {
+    .tk-avatar {
+      display: none;
+    }
+
+    .tk-col {
+      flex-direction: column-reverse;
+    }
+
+    &.actions {
+      margin: 0;
+      justify-content: space-around;
+    }
+  }
+
+  // 管理面板
+  .tk-admin {
+    backdrop-filter: blur(5px);
+  }
+
+  // 通用按钮
+  .el-button {
+    background-color: var(--main-font-color);
+    border: 0 solid var(--main-color);
+    color: var(--main-site-background);
+  }
+
+  // 标签
+  .tk-tag-green {
+    background-color: var(--main-color);
+    border: none;
+    border-radius: 4px;
+    color: #fff;
+  }
+
+  .tk-action-icon,
+  .tk-icon.__comments {
+    color: var(--main-color);
+  }
+
+  .tk-actions a {
+    cursor: pointer;
+  }
+
+  .tk-nick {
+    line-height: 40px;
+  }
+
+  .tk-extras {
+    margin-top: 0.5rem;
+    padding-bottom: 0.5rem;
+  }
+
+  // 展开按钮
+  .tk-expand {
+    width: 100%;
+    cursor: pointer;
+    padding: 0.75em;
+    text-align: center;
+    transition: all 0.3s;
+    border: 1px solid var(--main-card-border);
+    box-shadow: 0 8px 16px -4px var(--main-border-shadow);
+    border-radius: 50px;
+    letter-spacing: 5px;
+    background-color: var(--main-card-background);
+
+    &:hover {
+      color: #fff;
+      background-color: var(--main-color);
+      border-color: var(--main-color);
+    }
+  }
+
+  // 评论内容
+  .tk-content {
+    margin-top: 0;
+
+    p {
+      margin: 0;
+    }
+  }
+
+  // 代码块
+  pre {
+    background: #272822;
+    padding: 1em;
+    margin: 0.5em 0;
+    overflow: auto;
+    border-radius: 0.3em;
+
+    code {
+      background: none;
+    }
+  }
+
+  code {
+    padding: 2px 4px;
+    background: var(--main-card-second-background);
+    color: var(--main-error-color);
+  }
+
+  // 头像
+  .tk-avatar {
+    border-radius: 50px;
+
+    .tk-avatar-img {
+      height: 2.5rem !important;
+    }
+  }
+
+  .tk-comment .tk-submit .tk-avatar,
+  .tk-replies .tk-avatar {
+    height: 2.5rem !important;
+    width: 2.5rem !important;
+  }
+
+  // 回复区
+  .tk-replies {
+    max-height: 10rem !important;
+
+    &.tk-replies-expand {
+      max-height: none !important;
+    }
+
+    .tk-comment {
+      border-top: 1px dashed var(--main-color-bg);
+      border-radius: 12px;
+      padding: 1rem 0 0;
+      margin-top: 0;
+      transition: all 0.3s ease;
+    }
+
+    .tk-content {
+      font-size: 0.9rem;
+
+      span:first-child:not(.token) {
+        font-size: 0.75rem;
+        color: var(--main-font-second-color);
+      }
+    }
+  }
+
+  // 额外信息标签
+  .tk-extra {
+    background: var(--main-card-background);
+    border: 1px solid var(--main-card-border);
+    padding: 4px 8px;
+    border-radius: 8px;
+    margin-right: 4px;
+    color: var(--main-font-second-color);
+    margin-top: 6px;
+    font-size: 0.8rem;
+  }
+
+  .tk-extra-text {
+    font-size: 0.75rem;
+  }
+
+  // 管理配置输入框
+  .tk-admin-config-input .el-input__inner {
+    background: transparent !important;
+  }
+}
+
+// ========== 评论列表 ==========
+.tk-comments-container {
+  > .tk-comment {
+    margin-top: 0 !important;
+    margin-bottom: 1rem !important;
+    transition: all 0.3s;
+    border-radius: 12px;
+    padding: 1rem 0 0;
+    border: none;
+    border-top: 1px dashed var(--main-color-bg);
+  }
+
+  > .tk-submit {
+    opacity: 1;
+    height: auto;
+    overflow: visible;
+  }
+}
+
+// 页面内评论卡片样式
+#page .tk-comments-container > .tk-comment {
+  background: var(--main-card-background);
+  padding: 1rem;
+  border: 1px solid var(--main-card-border);
+  box-shadow: 0 8px 16px -4px var(--main-border-shadow);
+}
+
+// ========== 评论内容链接 ==========
+.tk-content span a:not([data-fancybox="gallery"]) {
+  font-weight: 500;
+  border-bottom: solid 2px var(--main-color-bg);
+  color: var(--main-font-color);
+  padding: 0 0.2em;
+  text-decoration: none;
+  transition: all 0.3s;
+
+  &:hover {
+    color: #fff;
+    background-color: var(--main-color);
+    border-radius: 4px;
+  }
+}
+
+.tk-main .tk-content span > a {
+  border-bottom: none;
+}
+
+// ========== 评论操作按钮定位 ==========
+.tk-comments .tk-row-actions-start {
+  position: absolute;
+  top: -84px;
+  left: 17px;
+}
+
+// ========== 输入提示气泡 ==========
+@keyframes commonTipsIn {
+  0% {
+    top: -50px;
+    opacity: 0;
+  }
+  100% {
+    top: -60px;
+    opacity: 1;
+  }
+}
+
+@keyframes commonTriangleIn {
+  0% {
+    transform: translate(-50%, -36px);
+    opacity: 0;
+  }
+  100% {
+    transform: translate(-50%, -46px);
+    opacity: 1;
+  }
+}
+
+@keyframes donateEffcet {
+  0% {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.el-input.el-input--small.el-input-group.el-input-group--prepend {
+  &::before {
+    display: none;
+    position: absolute;
+    top: -60px;
+    white-space: nowrap;
+    border-radius: 10px;
+    left: 50%;
+    transform: translate(-50%);
+    padding: 14px 18px;
+    background: var(--main-font-color);
+    color: var(--main-card-background);
+    z-index: 100;
+  }
+
+  &::after {
+    display: none;
+    content: "";
+    position: absolute;
+    border: 12px solid transparent;
+    border-top-color: var(--main-font-color);
+    left: 50%;
+    transform: translate(-50%, -46px);
+  }
+
+  &:nth-child(1)::before {
+    content: "输入QQ号会自动获取昵称和头像🐧";
+  }
+
+  &:nth-child(2)::before {
+    content: "收到回复将会发送到您的邮箱📧";
+  }
+
+  &:nth-child(3)::before {
+    content: "可以通过昵称访问您的网站🔗";
+  }
+
+  &:focus-within {
+    &::before {
+      display: block;
+      animation: commonTipsIn 0.3s;
+      z-index: 2;
+    }
+
+    &::after {
+      display: block;
+      animation: commonTriangleIn 0.3s;
+    }
+  }
+}
+
+// ========== 表情面板 ==========
+.OwO {
+  .OwO-body {
+    min-width: 31.25rem;
+    border: 1px solid var(--main-card-border) !important;
+    border-radius: 8px !important;
+    overflow: hidden;
+    background-color: var(--main-mask-background) !important;
+    backdrop-filter: saturate(180%) blur(10px);
+    cursor: auto;
+    top: 2.1em !important;
+    transform: translateZ(0);
+    animation: donateEffcet 0.3s ease 0.1s 1 normal both running;
+
+    .OwO-items-show {
+      margin: 12px 8px;
+    }
+
+    .OwO-items .OwO-item {
+      &:hover {
+        box-shadow: 0 5px 12px -5px transparent !important;
+        border-radius: 8px;
+      }
+    }
+  }
+}
+
+// ========== 评论提示 ==========
+#post-comment {
+  .comment-head {
+    font-size: 0.8em !important;
+    margin-bottom: 0.5rem;
+  }
+
+  .comment-tips {
+    background-color: rgba(103, 194, 58, 0.13);
+    border: 1px solid var(--main-success-color);
+    color: var(--main-success-color);
+    border-radius: 8px;
+    padding: 8px 12px;
+    margin-top: 0.5rem;
+    display: none;
+    width: 100%;
+
+    &.show {
+      display: flex;
+    }
+  }
+}
+
+// ========== 评论内容溢出 ==========
+.tk-content {
+  margin-top: 0.5rem;
+  overflow: auto;
+  max-height: 500px;
+}
+
+// ========== 滚动驱动动画 ==========
+@media (prefers-reduced-motion: no-preference) {
+  #page .tk-comments-container > .tk-comment {
+    animation: animate-in-and-out 1s linear forwards;
+    animation-timeline: view();
+
+    &:has(.OwO-open) {
+      z-index: 1;
+    }
+  }
+}
+
+// ========== 移动端适配 ==========
+@media screen and (max-width: 768px) {
+  .OwO .OwO-body {
+    min-width: 260px;
+  }
+
+  .tk-comments {
+    .tk-row-actions-start {
+      top: -176px;
+    }
+
+    .tk-submit .el-button--primary {
+      height: 122px;
+      top: -126px;
+    }
+
+    .tk-comments-container .tk-comment {
+      padding: 1rem;
+      border: 1px solid var(--main-card-border);
+      box-shadow: 0 8px 16px -4px var(--main-border-shadow);
+      background: var(--main-card-background);
+    }
+
+    .tk-replies .tk-comment {
+      border: none;
+    }
+
+    .el-textarea__inner {
+      background: var(--main-card-background) !important;
+      overflow: hidden;
+      resize: none !important;
+    }
+
+    button.el-button.tk-preview {
+      display: none;
+    }
+
+    .tk-main .tk-submit .tk-row.actions {
+      justify-content: center;
+    }
+
+    button.el-button.tk-send,
+    button.el-button.tk-cancel {
+      width: 100%;
+    }
+
+    .tk-row-actions-start {
+      position: absolute;
+    }
+  }
+}

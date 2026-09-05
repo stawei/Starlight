@@ -1,0 +1,39 @@
+@font-face {
+  font-family: "Site Title";
+  font-display: swap;
+  src: url("/fonts/title.ttf");
+}
+
+@font-face {
+  font-family: "Aa云深醉歌行楷";
+  font-display: swap;
+  src: url("/fonts/Aa云深醉歌行楷.ttf");
+}
+
+html,
+body,
+#app {
+  font-family: var(--main-font-family) !important;
+}
+
+html.ysk {
+  --main-font-family: "Aa云深醉歌行楷", sans-serif;
+}
+
+.iconfont {
+  font-family: "iconfont" !important;
+  font-size: 1rem;
+  font-style: normal;
+  color: var(--main-font-color);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.ri {
+  font-family: "remixicon" !important;
+  font-size: 1rem;
+  font-style: normal;
+  color: var(--main-font-color);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
