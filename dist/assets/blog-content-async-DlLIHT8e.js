@@ -1,1 +1,0 @@
-import{i as n}from"./index-4aPzslNh.js";let t=null;const e=()=>!!n.postContentMap,a=()=>(t||(t=fetch("/blog-data/content.json").then(o=>o.ok?o.json():{postContentMap:{},staticPages:{}}).catch(()=>({postContentMap:{},staticPages:{}}))),t),c=async()=>e()?{postContentMap:n.postContentMap,staticPages:n.staticPages||{}}:a();export{c as g};
